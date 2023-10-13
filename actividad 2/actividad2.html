@@ -15,49 +15,50 @@
             <div id="cronometro">0:00:00</div>
         </div>
         <div id="botones">
-            <button id="iniciar">Iniciar</button>
-            <button id="detener">Detener</button>
-            <button id="reiniciar">Reiniciar</button>
+            <button id="iniciar" onclick="iniciar();">Iniciar</button>
+            <button id="detener" onclick="detener();">Detener</button>
+            <button id="reiniciar" onclick="reiniciar();">Reiniciar</button>
         </div>
     </div>
 
     <script>
-    let intervalId;
-    let tiempo = 0;
-    let corriendo = false;
 
-    let cronometro = document.getElementById("cronometro");
-    let btnIniciar = document.getElementById("iniciar");
-    let btnDetener = document.getElementById("detener");
-    let btnReiniciar = document.getElementById("reiniciar");
+    let intervalId; /* variable para guardar el valor del intervalo que se usara*/
+    let tiempo = 0; /* contador que almacena tiempo transcurrido en segundos*/
+    let corriendo = false; /* indicador para saber si el cronometro esta activo o no*/
+    let cronometro = document.getElementById("cronometro"); /* instancia del cronometro*/
+
 
     function actualizarCronometro() {
-        tiempo++;
-        let horas = Math.floor(tiempo / 3600);
+        tiempo++; /* aumento del tiempo en 1s*/
+        /* calculo del tiempo (horas, minutos, segundos) a partir del tiempo transcurrido*/
+        let horas = Math.floor(tiempo / 3600); 
         let minutos = Math.floor((tiempo % 3600) / 60);
         let segundos = tiempo % 60;
+        /* actualizacion del contenido de texto del cronometro*/
         cronometro.textContent = `${horas}:${minutos < 10 ? '0' : ''}${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
     }
-
-    btnIniciar.onclick = function () {
-        if (!corriendo) {
-            intervalId = setInterval(actualizarCronometro, 1000);
+    
+    function iniciar() {
+        if (!corriendo) {  /* Si el cronometro no esta corriendo*/
+            /* se crea un intervalo llamando a la funcion actualizar cada segundo(1000ms)*/
+            intervalId = setInterval(actualizarCronometro, 1000); 
             corriendo = true;
         }
     };
 
-    btnDetener.onclick = function () {
-        if (corriendo) {
-            clearInterval(intervalId);
+    function detener() {
+        if (corriendo) { /* si el cronometro esta corriendo*/
+            clearInterval(intervalId); /* se detiene el intervalo*/
             corriendo = false;
         }
     };
 
-    btnReiniciar.onclick = function () {
-        clearInterval(intervalId);
-        tiempo = 0;
-        corriendo = false;
-        cronometro.textContent = "0:00:00";
+    function reiniciar() {
+        clearInterval(intervalId); /* se detiene el intervalo en caso que el cronometro este activo*/
+        tiempo = 0; /* se reinicia el tiempo transcurrido*/
+        corriendo = false; /* se desactiva el indicador de ejecucion*/
+        cronometro.textContent = "0:00:00";  /* se formatea el texto del cronometro*/
     };
 
     </script>

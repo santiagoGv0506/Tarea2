@@ -14,27 +14,27 @@
     <ul id="listaEntradas"></ul>
 
     <script>
-
+        
     function agregarTexto() {
-        let input = document.getElementById("inputTexto");
-        let texto = input.value.toLowerCase();
+        let input = document.getElementById("inputTexto"); /* se crea objeto que almacena imput*/
+        let texto = input.value.toLowerCase(); /* transformamos el input a minuscula*/
 
-         if (texto !== "") {
+         if (texto !== "") { /* si el imput no esta vacio creamos un elemento de lista y le asignamos el valor del texto del input*/
             let lista = document.getElementById("listaEntradas");
             let nuevaEntrada = document.createElement("li");
             nuevaEntrada.textContent = texto;
             lista.appendChild(nuevaEntrada);
 
-            input.value = "";
+            input.value = ""; /* reiniciamos el input*/
         }
     }
 
     function borrarUltimaEntrada() {
-        let lista = document.getElementById("listaEntradas");
-        let ultimaEntrada = lista.lastElementChild;
+        let lista = document.getElementById("listaEntradas"); /* se crea una lista con todos los inputs ingresados*/
+        let ultimaEntrada = lista.lastElementChild; /* se guarda el valor del ultimo input ingresado*/
     
-        if (ultimaEntrada) {
-            lista.removeChild(ultimaEntrada);
+        if (ultimaEntrada) { /* si ultima entrada no esta vacio, se elimina el valor del ultimo input*/
+            lista.removeChild(ultimaEntrada); 
         }
     }
     </script>
