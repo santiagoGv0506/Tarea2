@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#cronometro-container {
+    text-align: center;
+    margin: 0 20px;
+}
+
+#cronometro {
+    font-size: 2em;
+}
+
+#botones {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    font-size: 1.5em;
+    margin: 10px 0;
+}

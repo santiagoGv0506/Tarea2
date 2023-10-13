@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="inputTexto" placeholder="Ingresa un texto">
+    <button onclick="agregarTexto()">Agregar</button>
+    <button onclick="borrarUltimaEntrada()">Borrar</button>
+    <h2>Entradas anteriores:</h2>
+    <ul id="listaEntradas"></ul>
+
+    <script>
+
+    function agregarTexto() {
+        let input = document.getElementById("inputTexto");
+        let texto = input.value.toLowerCase();
+
+         if (texto !== "") {
+            let lista = document.getElementById("listaEntradas");
+            let nuevaEntrada = document.createElement("li");
+            nuevaEntrada.textContent = texto;
+            lista.appendChild(nuevaEntrada);
+
+            input.value = "";
+        }
+    }
+
+    function borrarUltimaEntrada() {
+        let lista = document.getElementById("listaEntradas");
+        let ultimaEntrada = lista.lastElementChild;
+    
+        if (ultimaEntrada) {
+            lista.removeChild(ultimaEntrada);
+        }
+    }
+    </script>
+
+</body>
+</html>

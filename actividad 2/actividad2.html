@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cronometro</title>
+    <link rel="stylesheet" href="cronometro.css">
+</head>
+<body>
+
+    
+    <div class="container">
+        <div id="cronometro-container">
+            <h1>Cronómetro</h1>
+            <div id="cronometro">0:00:00</div>
+        </div>
+        <div id="botones">
+            <button id="iniciar">Iniciar</button>
+            <button id="detener">Detener</button>
+            <button id="reiniciar">Reiniciar</button>
+        </div>
+    </div>
+
+    <script>
+    let intervalId;
+    let tiempo = 0;
+    let corriendo = false;
+
+    let cronometro = document.getElementById("cronometro");
+    let btnIniciar = document.getElementById("iniciar");
+    let btnDetener = document.getElementById("detener");
+    let btnReiniciar = document.getElementById("reiniciar");
+
+    function actualizarCronometro() {
+        tiempo++;
+        let horas = Math.floor(tiempo / 3600);
+        let minutos = Math.floor((tiempo % 3600) / 60);
+        let segundos = tiempo % 60;
+        cronometro.textContent = `${horas}:${minutos < 10 ? '0' : ''}${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+    }
+
+    btnIniciar.onclick = function () {
+        if (!corriendo) {
+            intervalId = setInterval(actualizarCronometro, 1000);
+            corriendo = true;
+        }
+    };
+
+    btnDetener.onclick = function () {
+        if (corriendo) {
+            clearInterval(intervalId);
+            corriendo = false;
+        }
+    };
+
+    btnReiniciar.onclick = function () {
+        clearInterval(intervalId);
+        tiempo = 0;
+        corriendo = false;
+        cronometro.textContent = "0:00:00";
+    };
+
+    </script>
+</body>
+</html>
